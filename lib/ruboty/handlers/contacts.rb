@@ -9,6 +9,8 @@ module Ruboty
 
       on(/list contacts\z/, name: "list", description: "List all contacts")
 
+      on(/call contact (?<name>[^ ]+)/, name: "echo_call", description: "Call a contact by twilio")
+
       def add(message)
         contact = create(message)
         message.reply("New contact \"#{contact.name}\" created")
@@ -26,6 +28,16 @@ module Ruboty
 
       def list(message)
         message.reply(summary, code: true)
+      end
+
+      def echo_call(message)
+        name = message[:name]
+        if contacts.has_key?(name)
+          contact = Ruboty::Contacts::Contact.new(contacts[name])
+          message.reply("call #{contact.number}")
+        else
+          message.reply("Contact \"#{name}\" does not exist")
+        end
       end
 
       private
