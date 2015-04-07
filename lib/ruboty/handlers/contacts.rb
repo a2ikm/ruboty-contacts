@@ -35,7 +35,7 @@ module Ruboty
         if contacts.has_key?(name)
           contact = Ruboty::Contacts::Contact.new(contacts[name])
           text = message[:text] || "This call is from #{message.from_name}"
-          message.reply("call #{contact.number} #{text}")
+          message.reply("@#{robot.name} call #{contact.number} #{text}")
         else
           message.reply("Contact \"#{name}\" does not exist")
         end
