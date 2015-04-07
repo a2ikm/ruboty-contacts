@@ -1,7 +1,6 @@
-require "ruboty/contacts/version"
+require "active_support/core_ext/hash/keys"
 
-module Ruboty
-  module Contacts
-    # Your code goes here...
-  end
-end
+require "ruboty"
+require "ruboty/handlers/contacts"
+require "ruboty/contacts/contact"
+require "ruboty/contacts/version"
